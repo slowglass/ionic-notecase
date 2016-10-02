@@ -8,8 +8,10 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 
 
+import { DropboxService } from '../services/dropbox/dropbox';
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [DropboxService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -23,7 +25,6 @@ export class MyApp {
     public menu: MenuController
   ) {
     this.initializeApp();
-
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },

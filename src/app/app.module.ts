@@ -5,6 +5,8 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 
+import { DropboxService } from '../services/dropbox/dropbox';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,6 +24,6 @@ import { ListPage } from '../pages/list/list';
     ItemDetailsPage,
     ListPage
   ],
-  providers: []
+  providers: [DropboxService]
 })
 export class AppModule {}

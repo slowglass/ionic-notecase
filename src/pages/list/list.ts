@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
-import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 
-import {Note} from '../../note.ts';
 import {DropboxService} from '../../services/dropbox/dropbox';
+import {Note} from '../../note';
 
 @Component({
-  templateUrl: 'list.html',
-  providers: [DropboxService]
+  templateUrl: 'list.html'
 })
 export class ListPage {
   token: string;
@@ -23,10 +23,6 @@ export class ListPage {
     public dropboxService: DropboxService) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
       'american-football', 'boat', 'bluetooth', 'build'];
-
-    console.log("Init Dropbox");
-    this.dropboxService.updateTree();
-    console.log("Init Done");
 
     this.items = [];
 

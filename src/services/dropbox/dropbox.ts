@@ -13,6 +13,7 @@ export class DropboxService {
         console.log("Dropbox : constructor");
         this.token = "3wsLXh8GbvUAAAAAAAAUagzM6j17BZJjTrQXMewcgI5vVD-vR-kA02sMSe7m9CYd";
         this.tree = new Map<string, Map<string, Note>>();
+        this.updateTree();
     }
 
     getDirectory(dir: string) {
@@ -56,7 +57,7 @@ export class DropboxService {
 
     }
 
-    updateTree() {
+    updateTree(dataCB?: Function, errCB?: Function) {
         console.log("Dropbox : updateTree");
         var $$ = this;
         let url = 'https://api.dropboxapi.com/2/files/list_folder';
@@ -68,8 +69,8 @@ export class DropboxService {
         this.http.post(url, body, options)
             .map(res => res.json())
             .subscribe(
-            data => $$.processTree(data),
-            err => console.log(err),
+            data => { $$.processTree(data); if (dataCB !== undefined) dataCB(data); },
+            err => { console.log(err); if (errCB !== undefined) errCB(err); },
             () => console.log('Directory Downloaded')
             );
     }
